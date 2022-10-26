@@ -7,9 +7,9 @@
   </supportedVersions>
   <author>Sokyran, Hush</author>
   <description>
-The 1.4 update brought us an option to pick the style of buildings being constructed - however, this can only be used in classical mode/if the idology system is inactive.
+The 1.4 update brought us an option to pick the style of buildings being constructed - however, this can only be used in classical mode/if the ideology system is inactive.
 
-This mod allows the style to picked for the buildings no matter what. By default, only the styles of the primary ideology can be picked. This can be changed in the settings to allow for either any style, or alternatively allowing for non-primary colony ideologies alongisde the main one.
+This mod allows the style to picked for the buildings no matter what. By default, only the styles of the primary ideology can be picked. This can be changed in the settings to allow for either any style, or alternatively allowing for non-primary colony ideologies alongside the main one.
   </description>
   <modDependencies>
     <li>
