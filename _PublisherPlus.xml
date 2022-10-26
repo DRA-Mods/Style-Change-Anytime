@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Configuration>
+  <Excluded>
+    <exclude>.git</exclude>
+    <exclude>.idea</exclude>
+    <exclude>.vs</exclude>
+    <exclude>Source\.vs</exclude>
+    <exclude>Source\AlwaysAvailableStyleChange\.vs</exclude>
+    <exclude>Source\AlwaysAvailableStyleChange\obj</exclude>
+  </Excluded>
+</Configuration>

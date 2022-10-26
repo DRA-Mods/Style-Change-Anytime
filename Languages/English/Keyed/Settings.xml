@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+    <AlwaysAvailableStyleChangeShowAllStyles>show all styles</AlwaysAvailableStyleChangeShowAllStyles>
+    <AlwaysAvailableStyleChangeShowAllStylesTooltip>if enabled, it'll always show all styles - even if they're not part of the player's ideology</AlwaysAvailableStyleChangeShowAllStylesTooltip>
+
+    <AlwaysAvailableStyleChangeUsePrimaryIdeoOnly>only use primary ideology</AlwaysAvailableStyleChangeUsePrimaryIdeoOnly>
+    <AlwaysAvailableStyleChangeUsePrimaryIdeoOnlyTooltip>determines if only the primary colony ideology is used, or should the minor ones also be included</AlwaysAvailableStyleChangeUsePrimaryIdeoOnlyTooltip>
+</LanguageData>
