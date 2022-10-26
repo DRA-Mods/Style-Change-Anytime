@@ -3,9 +3,6 @@
   <Excluded>
     <exclude>.git</exclude>
     <exclude>.idea</exclude>
-    <exclude>.vs</exclude>
-    <exclude>Source\.vs</exclude>
-    <exclude>Source\AlwaysAvailableStyleChange\.vs</exclude>
-    <exclude>Source\AlwaysAvailableStyleChange\obj</exclude>
+    <exclude>Source\StyleChangeAnytime\obj</exclude>
   </Excluded>
 </Configuration>
