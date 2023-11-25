@@ -40,7 +40,7 @@ namespace StyleChangeAnytime
                         field == ideoManagerClassicModeField)
                     {
                         index += 2;
-                        Log.Message("[Always Available Style Change] - removing classic mode requirement");
+                        Log.Message("[Style Change Anytime] - removing classic mode requirement");
                     }
                     else yield return ci;
                 }
@@ -68,7 +68,7 @@ namespace StyleChangeAnytime
                     if (ci.opcode == OpCodes.Callvirt && ci.operand is MethodInfo method && method == target)
                     {
                         yield return new CodeInstruction(OpCodes.Call, replacement);
-                        Log.Message("[Always Available Style Change] - adding relevant category filtering");
+                        Log.Message("[Style Change Anytime] - adding relevant category filtering");
                     }
                 }
             }

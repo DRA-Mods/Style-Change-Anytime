@@ -8,7 +8,7 @@ namespace StyleChangeAnytime
     public class StyleChangeAnytimeMod : Mod
     {
         private static Harmony harmony;
-        internal static Harmony Harmony => harmony ??= new Harmony("Dra.AlwaysAvailableIdeoChange");
+        internal static Harmony Harmony => harmony ??= new Harmony("Dra.StyleChangeAnytime");
         public static StyleChangeAnytimeSettings anytimeSettings;
 
         public StyleChangeAnytimeMod(ModContentPack content) : base(content)
@@ -18,11 +18,11 @@ namespace StyleChangeAnytime
             Harmony.PatchAll();
 
             if (!ModsConfig.IdeologyActive)
-                Log.Error("[Always Available Style Change] - Ideology is inactive, this mod is completely pointless.");
+                Log.Error("[Style Change Anytime] - Ideology is inactive, this mod is completely pointless.");
         }
 
         public override void DoSettingsWindowContents(Rect inRect) => anytimeSettings.DoSettingsWindowContents(inRect);
 
-        public override string SettingsCategory() => "Always Available Style Change";
+        public override string SettingsCategory() => "Style Change Anytime";
     }
 }
