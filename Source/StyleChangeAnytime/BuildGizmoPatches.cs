@@ -10,7 +10,7 @@ using Verse;
 
 namespace StyleChangeAnytime
 {
-    internal static class HarmonyPatches
+    internal static class BuildGizmoPatches
     {
         [HarmonyPatch]
         private static class PatchGizmoWithoutClassicMode
