@@ -5,7 +5,6 @@ using Verse;
 
 namespace StyleChangeAnytime
 {
-    [UsedImplicitly]
     public class StyleChangeAnytimeMod : Mod
     {
         private static Harmony harmony;

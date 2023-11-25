@@ -15,14 +15,12 @@ namespace StyleChangeAnytime
         [HarmonyPatch]
         private static class PatchGizmoWithoutClassicMode
         {
-            [UsedImplicitly]
             private static MethodBase TargetMethod()
             {
                 var type = AccessTools.FirstInner(typeof(Blueprint_Build), t => typeof(IEnumerator<Gizmo>).IsAssignableFrom(t));
                 return AccessTools.Method(type, nameof(IEnumerator.MoveNext));
             }
 
-            [UsedImplicitly]
             private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
                 var instr = instructions.ToArray();
@@ -52,14 +50,12 @@ namespace StyleChangeAnytime
         [HarmonyPatch]
         private static class PatchRelevantStylesOnly
         {
-            [UsedImplicitly]
             private static MethodBase TargetMethod()
             {
                 var type = AccessTools.FirstInner(typeof(Blueprint_Build), t => AccessTools.Field(t, "stuffColor") != null);
                 return AccessTools.FirstMethod(type, m => m.ReturnType == typeof(void));
             }
 
-            [UsedImplicitly]
             private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
                 var target = AccessTools.DeclaredPropertyGetter(typeof(ThingDef), nameof(ThingDef.RelevantStyleCategories));
