@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using Multiplayer.API;
 using UnityEngine;
 using Verse;
 
@@ -14,10 +15,15 @@ public class StyleChangeAnytimeMod : Mod
     {
         settings = GetSettings<StyleChangeAnytimeSettings>();
 
-        Harmony.PatchAll();
-
         if (!ModsConfig.IdeologyActive)
             Log.Error("[Style Change Anytime] - Ideology is inactive, this mod is completely pointless.");
+
+        LongEventHandler.ExecuteWhenFinished(() =>
+        {
+            Harmony.PatchAll();
+            if (MP.enabled)
+                MP.RegisterAll();
+        });
     }
 
     public override void DoSettingsWindowContents(Rect inRect) => settings.DoSettingsWindowContents(inRect);

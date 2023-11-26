@@ -6,6 +6,16 @@
     <StyleChangeAnytimeUsePrimaryIdeoOnly>only use primary ideology</StyleChangeAnytimeUsePrimaryIdeoOnly>
     <StyleChangeAnytimeUsePrimaryIdeoOnlyTooltip>determines if only the primary colony ideology is used, or should the minor ones also be included</StyleChangeAnytimeUsePrimaryIdeoOnlyTooltip>
 
+    <StyleChangeAnytimeApplyToBuildings>enabled for buildings</StyleChangeAnytimeApplyToBuildings>
+    <StyleChangeAnytimeApplyToBuildingsTooltip>if enabled, it'll be possible to change the style of already crafted items (when a valid building is selected)</StyleChangeAnytimeApplyToBuildingsTooltip>
+
+    <StyleChangeAnytimeApplyToItems>enabled for items</StyleChangeAnytimeApplyToItems>
+    <StyleChangeAnytimeApplyToItemsTooltip>if enabled, it'll be possible to change the style of already crafted items (when a valid item is selected)</StyleChangeAnytimeApplyToItemsTooltip>
+
+    <StyleChangeAnytimeApplyNever>never</StyleChangeAnytimeApplyNever>
+    <StyleChangeAnytimeApplyClassicMode>classic mode</StyleChangeAnytimeApplyClassicMode>
+    <StyleChangeAnytimeApplyAlways>always</StyleChangeAnytimeApplyAlways>
+
     <StyleChangeAnytimeApplyToBlueprints>enabled for blueprints</StyleChangeAnytimeApplyToBlueprints>
     <StyleChangeAnytimeApplyToBlueprintsTooltip>if enabled, it'll be possible to change the style of blueprints (when a valid blueprint is selected)</StyleChangeAnytimeApplyToBlueprintsTooltip>
 

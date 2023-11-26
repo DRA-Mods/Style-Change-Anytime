@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
@@ -24,7 +23,7 @@ internal static class PatchRelevantStylesOnly
     private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, MethodBase baseMethod)
     {
         var target = AccessTools.DeclaredPropertyGetter(typeof(ThingDef), nameof(ThingDef.RelevantStyleCategories));
-        var replacement = AccessTools.Method(typeof(PatchRelevantStylesOnly), nameof(FilterCategories));
+        var replacement = AccessTools.Method(typeof(StyleFilterUtilities), nameof(StyleFilterUtilities.FilterCategories));
 
         foreach (var ci in instructions)
         {
@@ -43,28 +42,4 @@ internal static class PatchRelevantStylesOnly
         }
     }
 
-    private static List<StyleCategoryDef> FilterCategories(List<StyleCategoryDef> list)
-    {
-        if (Find.IdeoManager.classicMode || StyleChangeAnytimeMod.settings.showAllStyles || list.NullOrEmpty())
-            return list;
-
-        var ideo = Faction.OfPlayer.ideos;
-        if (ideo == null)
-            return list;
-
-        var primary = ideo.PrimaryIdeo;
-
-        if (StyleChangeAnytimeMod.settings.usePrimaryIdeoOnly && primary != null)
-            return list.Where(def => primary.thingStyleCategories.Any(x => x.category == def)).ToList();
-
-        var all = ideo.IdeosMinorListForReading
-            .SelectMany(i => i.thingStyleCategories.Select(c => c.category))
-            .ConcatIfNotNull(primary?.thingStyleCategories.Select(c => c.category))
-            .ToList();
-
-        var result = list.Where(def => all.Contains(def)).ToList();
-        if (result.Any())
-            return result;
-        return list;
-    }
 }

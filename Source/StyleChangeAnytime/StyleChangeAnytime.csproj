@@ -9,17 +9,17 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
     <DebugType>portable</DebugType>
-    <PublicizeAsReferenceAssemblies>false</PublicizeAsReferenceAssemblies>
     <RootNamespace>$(MSBuildProjectName.Replace(" ", "."))</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Krafs.Publicizer" Version="2.0.1">
+    <PackageReference Include="Krafs.Publicizer" Version="2.2.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Lib.Harmony" Version="2.2.*" ExcludeAssets="runtime" />
-    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.4.3528" />
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.4.*" />
+    <PackageReference Include="RimWorld.MultiplayerAPI" Version="0.4.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,4 +34,8 @@
   <ItemGroup>
     <Publicize Include="Assembly-CSharp" />
   </ItemGroup>
+
+<!--  <PropertyGroup>-->
+<!--    <PublicizerClearCacheOnClean>true</PublicizerClearCacheOnClean>-->
+<!--  </PropertyGroup>-->
 </Project>

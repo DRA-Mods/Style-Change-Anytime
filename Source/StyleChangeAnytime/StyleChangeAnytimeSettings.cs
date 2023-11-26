@@ -10,10 +10,19 @@ public class StyleChangeAnytimeSettings : ModSettings
     public bool showAllStyles = false;
     public bool usePrimaryIdeoOnly = true;
 
+    public ShowRestrictions showOnBuildings = ShowRestrictions.Always;
+    public ShowRestrictions showOnItems = ShowRestrictions.Always;
     public bool showOnBlueprints = true;
     public bool showOnBillConfig = true;
 
     public bool devModeLogs = false;
+
+    public enum ShowRestrictions : byte
+    {
+        Never,
+        ClassicMode,
+        Always,
+    }
 
     public override void ExposeData()
     {
@@ -22,6 +31,8 @@ public class StyleChangeAnytimeSettings : ModSettings
         Scribe_Values.Look(ref showAllStyles, nameof(showAllStyles), false);
         Scribe_Values.Look(ref usePrimaryIdeoOnly, nameof(usePrimaryIdeoOnly), true);
 
+        Scribe_Values.Look(ref showOnBuildings, nameof(showOnBuildings), ShowRestrictions.Always);
+        Scribe_Values.Look(ref showOnItems, nameof(showOnItems), ShowRestrictions.Always);
         Scribe_Values.Look(ref showOnBlueprints, nameof(showOnBlueprints), true);
         Scribe_Values.Look(ref showOnBillConfig, nameof(showOnBillConfig), true);
 
@@ -45,6 +56,24 @@ public class StyleChangeAnytimeSettings : ModSettings
 
         listing.GapLine();
 
+        if (listing.ButtonTextLabeledPct(
+                "StyleChangeAnytimeApplyToBuildings".Translate().CapitalizeFirst(),
+                $"StyleChangeAnytimeApply{showOnBuildings}".Translate().CapitalizeFirst(),
+                0.7f,
+                tooltip: "StyleChangeAnytimeApplyToBuildingsTooltip".Translate().CapitalizeFirst()))
+        {
+            HandleShowRestrictionsMenu(val => showOnBuildings = val);
+        }
+
+        if (listing.ButtonTextLabeledPct(
+                "StyleChangeAnytimeApplyToItems".Translate().CapitalizeFirst(),
+                $"StyleChangeAnytimeApply{showOnItems}".Translate().CapitalizeFirst(),
+                0.7f,
+                tooltip: "StyleChangeAnytimeApplyToItemsTooltip".Translate().CapitalizeFirst()))
+        {
+            HandleShowRestrictionsMenu(val => showOnItems = val);
+        }
+
         listing.CheckboxLabeled(
             "StyleChangeAnytimeApplyToBlueprints".Translate().CapitalizeFirst(),
             ref showOnBlueprints,
@@ -65,5 +94,21 @@ public class StyleChangeAnytimeSettings : ModSettings
         }
 
         listing.End();
+        
+        return;
+
+        void HandleShowRestrictionsMenu(Action<ShowRestrictions> action)
+        {
+            var options = new List<FloatMenuOption>();
+            foreach (ShowRestrictions value in Enum.GetValues(typeof(ShowRestrictions)))
+            {
+                var current = value;
+                options.Add(new FloatMenuOption(
+                    $"StyleChangeAnytimeApply{current}".Translate().CapitalizeFirst(),
+                    () => action(current)));
+            }
+
+            Find.WindowStack.Add(new FloatMenu(options));
+        }
     }
 }
