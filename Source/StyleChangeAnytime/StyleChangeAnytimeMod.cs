@@ -2,26 +2,25 @@
 using UnityEngine;
 using Verse;
 
-namespace StyleChangeAnytime
+namespace StyleChangeAnytime;
+
+public class StyleChangeAnytimeMod : Mod
 {
-    public class StyleChangeAnytimeMod : Mod
+    private static Harmony harmony;
+    internal static Harmony Harmony => harmony ??= new Harmony("Dra.StyleChangeAnytime");
+    public static StyleChangeAnytimeSettings settings;
+
+    public StyleChangeAnytimeMod(ModContentPack content) : base(content)
     {
-        private static Harmony harmony;
-        internal static Harmony Harmony => harmony ??= new Harmony("Dra.StyleChangeAnytime");
-        public static StyleChangeAnytimeSettings anytimeSettings;
+        settings = GetSettings<StyleChangeAnytimeSettings>();
 
-        public StyleChangeAnytimeMod(ModContentPack content) : base(content)
-        {
-            anytimeSettings = GetSettings<StyleChangeAnytimeSettings>();
+        Harmony.PatchAll();
 
-            Harmony.PatchAll();
-
-            if (!ModsConfig.IdeologyActive)
-                Log.Error("[Style Change Anytime] - Ideology is inactive, this mod is completely pointless.");
-        }
-
-        public override void DoSettingsWindowContents(Rect inRect) => anytimeSettings.DoSettingsWindowContents(inRect);
-
-        public override string SettingsCategory() => "Style Change Anytime";
+        if (!ModsConfig.IdeologyActive)
+            Log.Error("[Style Change Anytime] - Ideology is inactive, this mod is completely pointless.");
     }
+
+    public override void DoSettingsWindowContents(Rect inRect) => settings.DoSettingsWindowContents(inRect);
+
+    public override string SettingsCategory() => "Style Change Anytime";
 }
