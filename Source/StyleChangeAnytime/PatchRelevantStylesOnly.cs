@@ -16,6 +16,9 @@ internal static class PatchRelevantStylesOnly
         var type = AccessTools.FirstInner(typeof(Blueprint_Build), t => AccessTools.Field(t, "stuffColor") != null);
         yield return AccessTools.FirstMethod(type, m => m.ReturnType == typeof(void));
 
+        // Disable gizmo if no options
+        yield return AccessTools.EnumeratorMoveNext(AccessTools.DeclaredMethod(typeof(Blueprint_Build), nameof(Blueprint_Build.GetGizmos)));
+
         // Bill config
         yield return AccessTools.DeclaredMethod(typeof(Dialog_BillConfig), nameof(Dialog_BillConfig.DoWindowContents));
     }
