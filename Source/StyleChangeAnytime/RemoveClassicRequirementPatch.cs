@@ -43,7 +43,7 @@ internal static class RemoveClassicRequirementPatch
                     if (StyleChangeAnytimeMod.settings.devModeLogs)
                     {
                         var name = (baseMethod.DeclaringType?.Namespace).NullOrEmpty() ? baseMethod.Name : $"{baseMethod.DeclaringType!.Name}:{baseMethod.Name}";
-                        Log.Message($"[Style Change Anytime] - removing classic mode requirement for method {name}");
+                        Log.Message($"[{StyleChangeAnytimeMod.ModName}] - removing classic mode requirement for method {name}");
                     }
                 }
                 else
@@ -55,7 +55,7 @@ internal static class RemoveClassicRequirementPatch
                     if (StyleChangeAnytimeMod.settings.devModeLogs)
                     {
                         var name = (baseMethod.DeclaringType?.Namespace).NullOrEmpty() ? baseMethod.Name : $"{baseMethod.DeclaringType!.Name}:{baseMethod.Name}";
-                        Log.Message($"[Style Change Anytime] - removing classic mode requirement and adding settings access for method {name}");
+                        Log.Message($"[{StyleChangeAnytimeMod.ModName}] - removing classic mode requirement and adding settings access for method {name}");
                     }
                 }
             }

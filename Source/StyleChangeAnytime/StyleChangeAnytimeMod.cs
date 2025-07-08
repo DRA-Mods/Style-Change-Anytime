@@ -7,6 +7,8 @@ namespace StyleChangeAnytime;
 
 public class StyleChangeAnytimeMod : Mod
 {
+    public const string ModName = "Style Change Anytime";
+
     private static Harmony harmony;
     internal static Harmony Harmony => harmony ??= new Harmony("Dra.StyleChangeAnytime");
     public static StyleChangeAnytimeSettings settings;
@@ -16,7 +18,7 @@ public class StyleChangeAnytimeMod : Mod
         settings = GetSettings<StyleChangeAnytimeSettings>();
 
         if (!ModsConfig.IdeologyActive)
-            Log.Error("[Style Change Anytime] - Ideology is inactive, this mod is completely pointless.");
+            Log.Error($"[{ModName}] - Ideology is inactive, this mod is completely pointless.");
 
         LongEventHandler.ExecuteWhenFinished(() =>
         {

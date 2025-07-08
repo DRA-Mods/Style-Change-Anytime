@@ -39,7 +39,7 @@ internal static class PatchRelevantStylesOnly
                 if (StyleChangeAnytimeMod.settings.devModeLogs)
                 {
                     var name = (baseMethod.DeclaringType?.Namespace).NullOrEmpty() ? baseMethod.Name : $"{baseMethod.DeclaringType!.Name}:{baseMethod.Name}";
-                    Log.Message($"[Style Change Anytime] - adding relevant category filtering for method {name}");
+                    Log.Message($"[{StyleChangeAnytimeMod.ModName}] - adding relevant category filtering for method {name}");
                 }
             }
         }
