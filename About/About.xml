@@ -4,6 +4,8 @@
   <name>Style Change Anytime</name>
   <supportedVersions>
     <li>1.4</li>
+    <li>1.5</li>
+    <li>1.6</li>
   </supportedVersions>
   <author>Sokyran, Hush</author>
   <description>
@@ -11,11 +13,11 @@ Do you like my mods? You can support me on Ko-Fi: https://ko-fi.com/sokyran
 
 The 1.4 update brought us an option to pick the style of blueprints and recipes - however, this can only be used in classical mode/if the ideology system is inactive.
 
-This mod allows the style to picked for the blueprints and recipes no matter what, as well as adding the same option for already constructed and crafted buildings and item.
+This mod allows the style to be picked for the blueprints and recipes no matter what, as well as adding the same option for already constructed and crafted buildings and item.
 
 By default, only the styles of the primary ideology can be picked. This can be changed in the settings to allow for either any style, or alternatively allowing for non-primary colony ideologies alongside the main one.
 
-The option to change style is applied by default to all of the mentioned things (buildings, items, blueprints, bills) - this can be changed to display them only for specific things depending on preferences.
+The option to change style is applied by default to all the mentioned things (buildings, items, blueprints, bills) - this can be changed to display them only for specific things depending on preferences.
   </description>
   <modDependencies>
     <li>
