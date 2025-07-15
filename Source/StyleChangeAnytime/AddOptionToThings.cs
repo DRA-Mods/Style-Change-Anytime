@@ -122,14 +122,14 @@ public static class AddOptionToThings
                     if (localIndex == 0)
                     {
                         options.Add(new FloatMenuOption(
-                            label,
+                            $"{label} default (TODO: Translate)",
                             () => ChangeStyleOfAllAffected(thingDef, style, null, MP.CanUseDevMode),
                             icon,
                             color));
                     }
 
                     options.Add(new FloatMenuOption(
-                        label,
+                        $"{label} {localIndex + 1}",
                         () => ChangeStyleOfAllAffected(thingDef, style, localIndex, MP.CanUseDevMode),
                         icon,
                         color));
