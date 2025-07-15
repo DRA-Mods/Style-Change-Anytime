@@ -1,27 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <LanguageData>
+
+    <!-- All of those have the first letter capitalized in code, if needed. -->
+
     <StyleChangeAnytimeShowAllStyles>show all styles</StyleChangeAnytimeShowAllStyles>
     <StyleChangeAnytimeShowAllStylesTooltip>if enabled, it'll always show all styles - even if they're not part of the player's ideology</StyleChangeAnytimeShowAllStylesTooltip>
 
     <StyleChangeAnytimeUsePrimaryIdeoOnly>only use primary ideology</StyleChangeAnytimeUsePrimaryIdeoOnly>
     <StyleChangeAnytimeUsePrimaryIdeoOnlyTooltip>determines if only the primary colony ideology is used, or should the minor ones also be included</StyleChangeAnytimeUsePrimaryIdeoOnlyTooltip>
 
+    <StyleChangeAnytimeIgnoreFactionCheck>ignore faction checks</StyleChangeAnytimeIgnoreFactionCheck>
+    <StyleChangeAnytimeIgnoreFactionCheckTooltip>if enabled, it'll be possible to change the style of anything not owned by the player (normally, only things that are owned or cannot have faction can be modified)</StyleChangeAnytimeIgnoreFactionCheckTooltip>
+
     <StyleChangeAnytimeApplyToBuildings>enabled for buildings</StyleChangeAnytimeApplyToBuildings>
     <StyleChangeAnytimeApplyToBuildingsTooltip>if enabled, it'll be possible to change the style of already crafted items (when a valid building is selected)</StyleChangeAnytimeApplyToBuildingsTooltip>
+
+    <StyleChangeAnytimeApplyToBlueprints>enabled for blueprints</StyleChangeAnytimeApplyToBlueprints>
+    <StyleChangeAnytimeApplyToBlueprintsTooltip>if enabled, it'll be possible to change the style of blueprints (when a valid blueprint is selected)</StyleChangeAnytimeApplyToBlueprintsTooltip>
+
+    <StyleChangeAnytimeApplyToFrames>enabled for frames</StyleChangeAnytimeApplyToFrames>
+    <StyleChangeAnytimeApplyToFramesTooltip>if enabled, it'll be possible to change the style of frames (buildings under construction, only visible once fully constructed) (when a valid frame is selected)</StyleChangeAnytimeApplyToFramesTooltip>
 
     <StyleChangeAnytimeApplyToItems>enabled for items</StyleChangeAnytimeApplyToItems>
     <StyleChangeAnytimeApplyToItemsTooltip>if enabled, it'll be possible to change the style of already crafted items (when a valid item is selected)</StyleChangeAnytimeApplyToItemsTooltip>
 
-    <StyleChangeAnytimeApplyNever>never</StyleChangeAnytimeApplyNever>
-    <StyleChangeAnytimeApplyClassicMode>classic mode</StyleChangeAnytimeApplyClassicMode>
-    <StyleChangeAnytimeApplyAlways>always</StyleChangeAnytimeApplyAlways>
-
-    <StyleChangeAnytimeApplyToBlueprints>enabled for blueprints</StyleChangeAnytimeApplyToBlueprints>
-    <StyleChangeAnytimeApplyToBlueprintsTooltip>if enabled, it'll be possible to change the style of blueprints (when a valid blueprint is selected)</StyleChangeAnytimeApplyToBlueprintsTooltip>
+    <StyleChangeAnytimeApplyToPlants>enabled for plants</StyleChangeAnytimeApplyToPlants>
+    <StyleChangeAnytimeApplyToPlantsTooltip>if enabled, it'll be possible to change the style of already crafted plants (when a valid plants is selected)</StyleChangeAnytimeApplyToPlantsTooltip>
 
     <StyleChangeAnytimeApplyToBills>enabled for bills</StyleChangeAnytimeApplyToBills>
     <StyleChangeAnytimeApplyToBillsTooltip>if enabled, it'll be possible to change the style of bill (inside of bill config window)</StyleChangeAnytimeApplyToBillsTooltip>
 
     <StyleChangeAnytimeDevModeLogs>enabled dev mode logs</StyleChangeAnytimeDevModeLogs>
     <StyleChangeAnytimeDevModeLogsTooltip>enables extra logs when launching the game</StyleChangeAnytimeDevModeLogsTooltip>
+
+    <StyleChangeAnytimeApplyNever>never</StyleChangeAnytimeApplyNever>
+    <StyleChangeAnytimeApplyClassicMode>classic mode</StyleChangeAnytimeApplyClassicMode>
+    <StyleChangeAnytimeApplyAlways>always</StyleChangeAnytimeApplyAlways>
+
 </LanguageData>

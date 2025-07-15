@@ -67,14 +67,14 @@ public static class AddOptionToThings
 
         var gizmo = new Command_Action
         {
-            defaultLabel = "ChangeStyle".Translate().CapitalizeFirst(),
-            defaultDesc = "ChangeStyleDesc".Translate(),
+            defaultLabel = "StyleChangeAnytimeChangeAppearance".Translate().CapitalizeFirst(),
+            defaultDesc = "StyleChangeAnytimeChangeAppearanceDesc".Translate(),
             icon = ChangeStyleTex.Texture,
             Order = 15f,
             action = () => OnGizmo(thing, relevantStyles),
         };
         if (!StyleUtilities.CanBeStyled(thing.def, relevantStyles))
-            gizmo.Disable("ChangeStyleDisabledNoCategories".Translate());
+            gizmo.Disable("StyleChangeAnytimeChangeAppearanceDisabledNoCategories".Translate());
 
         return gizmo;
     }
@@ -87,7 +87,7 @@ public static class AddOptionToThings
 
         var options = new List<FloatMenuOption>();
 
-        AddOptions(thing.Graphic, null, "Basic".Translate().CapitalizeFirst());
+        AddOptions(thing.Graphic, null, "StyleChangeAnytimeNoStyle".Translate().CapitalizeFirst());
 
         if (thing.def.CanBeStyled())
         {
@@ -131,14 +131,14 @@ public static class AddOptionToThings
                     if (localIndex == 0)
                     {
                         options.Add(new FloatMenuOption(
-                            $"{label} default (TODO: Translate)",
+                            "StyleChangeAnytimeRandomDefault".Translate(label.Named("LABEL")),
                             () => ChangeStyleOfAllAffected(thingDef, style, null, MP.CanUseDevMode),
                             icon,
                             color));
                     }
 
                     options.Add(new FloatMenuOption(
-                        $"{label} {localIndex + 1}",
+                        "StyleChangeAnytimeRandomIndexed".Translate(label.Named("LABEL"), (localIndex + 1).Named("INDEX")),
                         () => ChangeStyleOfAllAffected(thingDef, style, localIndex, MP.CanUseDevMode),
                         icon,
                         color));

@@ -53,32 +53,34 @@ public static class AddOptionToBills
             var rect4 = listing.GetRect(30f);
             Widgets.DrawHighlight(rect4);
             Text.Anchor = TextAnchor.MiddleCenter;
-            Widgets.Label(rect4, "NoStylesAvailable".Translate());
+            Widgets.Label(rect4, "StyleChangeAnytimeChangeAppearanceDisabledNoCategories".Translate());
             Text.Anchor = TextAnchor.UpperLeft;
             return;
         }
 
         var global = Faction.OfPlayer.ideos.PrimaryIdeo.style.StyleForThingDef(producedThing);
-        string text7 = global == null ? "Basic".Translate().CapitalizeFirst() : global.category.LabelCap;
-        string text8 = instance.bill.style?.Category?.LabelCap ?? "Basic".Translate().CapitalizeFirst();
-        string text9 = instance.bill.globalStyle ? "UseGlobalStyle".Translate().ToString() + " (" + text7 + ")" : text8;
-        if (!instance.bill.globalStyle && instance.bill.style != null && instance.bill.graphicIndexOverride != null)
-            text9 = text9 + " " + (instance.bill.graphicIndexOverride.Value + 1);
+        string globalStyleLabel = global == null ? "StyleChangeAnytimeNoStyle".Translate().CapitalizeFirst() : global.category.LabelCap;
+        string currentStyleLabel = instance.bill.style?.Category?.LabelCap ?? "StyleChangeAnytimeNoStyle".Translate().CapitalizeFirst();
 
-        if (!listing.ButtonText(text9))
+        var buttonText = instance.bill.globalStyle && ModsConfig.IdeologyActive ? $"{"UseGlobalStyle".Translate()} ({globalStyleLabel})" : currentStyleLabel;
+        if ((!instance.bill.globalStyle || !ModsConfig.IdeologyActive) && instance.bill.style != null && instance.bill.graphicIndexOverride != null)
+            buttonText = $"{buttonText} {instance.bill.graphicIndexOverride.Value + 1}";
+
+        if (!listing.ButtonText(buttonText))
             return;
 
         var options = new List<FloatMenuOption>();
         var stuff = producedThing.MadeFromStuff ? GenStuff.DefaultStuffFor(producedThing) : null;
         var color = stuff == null ? Color.white : producedThing.GetColorForStuff(stuff);
 
-        AddOptions(producedThing.graphicData.Graphic, null, "Basic".Translate().CapitalizeFirst());
+        AddOptions(producedThing.graphicData.Graphic, null, "StyleChangeAnytimeNoStyle".Translate().CapitalizeFirst());
 
         if (producedThing.CanBeStyled())
         {
             if (!relevantStyleCategories.NullOrEmpty())
             {
-                options.Add(new FloatMenuOption($"{"UseGlobalStyle".Translate()} ({text7})", () => SetStyle(instance.bill, global?.styleDef, null, true), instance.bill.recipe.UIIconThing, instance.bill.recipe.UIIcon, global?.styleDef, orderInPriority: 1000));
+                // UseGlobalStyle requires ideology, but so should this branch
+                options.Add(new FloatMenuOption($"{"UseGlobalStyle".Translate()} ({globalStyleLabel})", () => SetStyle(instance.bill, global?.styleDef, null, true), instance.bill.recipe.UIIconThing, instance.bill.recipe.UIIcon, global?.styleDef, orderInPriority: 1000));
 
                 foreach (var styleCategoryDef in relevantStyleCategories)
                 {
@@ -103,7 +105,7 @@ public static class AddOptionToBills
         }
 
         if (options.Empty())
-            options.Add(new FloatMenuOption("Empty".Translate(), () => { }) { Disabled = true});
+            options.Add(new FloatMenuOption("StyleChangeAnytimeChangeAppearanceDisabledNoCategories".Translate(), () => { }) { Disabled = true});
 
         Find.WindowStack.Add(new FloatMenu(options));
 
@@ -119,14 +121,14 @@ public static class AddOptionToBills
                     if (localIndex == 0)
                     {
                         options.Add(new FloatMenuOption(
-                            $"{label} default (TODO: Translate)",
+                            "StyleChangeAnytimeRandomDefault".Translate(label.Named("LABEL")),
                             () => SetStyle(instance.bill, style, null, false),
                             icon,
                             color));
                     }
 
                     options.Add(new FloatMenuOption(
-                        $"{label} {localIndex + 1}",
+                        "StyleChangeAnytimeRandomIndexed".Translate(label.Named("LABEL"), (localIndex + 1).Named("INDEX")),
                         () => SetStyle(instance.bill, style, localIndex, false),
                         icon,
                         color));

@@ -11,6 +11,8 @@ namespace StyleChangeAnytime;
 [HarmonyPatch(typeof(Blueprint_Build), nameof(Blueprint_Build.GetGizmos), MethodType.Enumerator)]
 internal static class RemoveVanillaGizmo
 {
+    private static bool Prepare() => ModsConfig.IdeologyActive;
+
     private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, MethodBase baseMethod)
     {
         var instr = instructions.ToArray();
