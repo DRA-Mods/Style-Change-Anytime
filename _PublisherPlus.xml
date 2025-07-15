@@ -3,6 +3,9 @@
   <Excluded>
     <exclude>.git</exclude>
     <exclude>.idea</exclude>
+    <exclude>1.4\Assemblies\StyleChangeAnytime.pdb</exclude>
+    <exclude>1.5\Assemblies\StyleChangeAnytime.pdb</exclude>
+    <exclude>1.6\Assemblies\StyleChangeAnytime.pdb</exclude>
     <exclude>Source\StyleChangeAnytime\obj</exclude>
   </Excluded>
 </Configuration>
