@@ -17,9 +17,6 @@ public class StyleChangeAnytimeMod : Mod
     {
         settings = GetSettings<StyleChangeAnytimeSettings>();
 
-        if (!ModsConfig.IdeologyActive)
-            Log.Error($"[{ModName}] - Ideology is inactive, this mod is completely pointless.");
-
         LongEventHandler.ExecuteWhenFinished(() =>
         {
             Harmony.PatchAll();
