@@ -15,7 +15,7 @@ public static class StyleUtilities
         => (Texture2D)graphic.ExtractInnerGraphicFor(null, index).MatAt(Rot4.East).mainTexture;
 
     public static bool CanBeStyled(ThingDef def, List<StyleCategoryDef> styles)
-        => (def.CanBeStyled() && (!styles.NullOrEmpty() || !def.randomStyle.NullOrEmpty())) || IsSupportedGraphic(def.graphicData.Graphic);
+        => (def.CanBeStyled() && (!styles.NullOrEmpty() || !def.randomStyle.NullOrEmpty())) || (def.graphicData?.Graphic != null && IsSupportedGraphic(def.graphicData.Graphic));
 
     public static bool IsSupportedGraphic(Graphic graphic)
     {
