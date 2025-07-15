@@ -104,7 +104,7 @@ public static class AddOptionToThings
                         if (thingDefStyle.ThingDef != thingDef)
                             continue;
 
-                        AddOptions(thingDefStyle.StyleDef.Graphic, thingDefStyle.StyleDef, thingDefStyle.StyleDef.LabelCap);
+                        AddOptions(thingDefStyle.StyleDef.Graphic, thingDefStyle.StyleDef, thingDefStyle.StyleDef.Category.LabelCap);
                         break;
                     }
                 }
