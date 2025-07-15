@@ -60,11 +60,7 @@ public static class AddOptionToThings
                 break;
         }
 
-        var canBeStyled = thing.def.CanBeStyled();
-        var randomStyles = thing.def.randomStyle;
-        var supportedGraphic = StyleUtilities.IsSupportedGraphic(thing.Graphic);
-
-        if ((!canBeStyled || (thing.def.RelevantStyleCategories.NullOrEmpty() && randomStyles.NullOrEmpty())) && !supportedGraphic)
+        if (!StyleUtilities.CanBeStyled(thing.def, thing.def.RelevantStyleCategories))
             return null;
 
         var relevantStyles = StyleUtilities.FilterCategories(thing.def.RelevantStyleCategories);
@@ -77,7 +73,7 @@ public static class AddOptionToThings
             Order = 15f,
             action = () => OnGizmo(thing, relevantStyles),
         };
-        if ((!canBeStyled || (relevantStyles.NullOrEmpty() || randomStyles.NullOrEmpty())) && !supportedGraphic)
+        if (!StyleUtilities.CanBeStyled(thing.def, relevantStyles))
             gizmo.Disable("ChangeStyleDisabledNoCategories".Translate());
 
         return gizmo;
@@ -91,17 +87,31 @@ public static class AddOptionToThings
 
         var options = new List<FloatMenuOption>();
 
-        AddOption(null, "Basic".Translate().CapitalizeFirst());
+        AddOption(thing.Graphic, null, "Basic".Translate().CapitalizeFirst());
 
-        foreach (var styleCategoryDef in styles)
+        if (thing.def.CanBeStyled())
         {
-            foreach (var thingDefStyle in styleCategoryDef.thingDefStyles)
+            if (!styles.NullOrEmpty())
             {
-                if (thingDefStyle.ThingDef != thingDef)
-                    continue;
+                foreach (var styleCategoryDef in styles)
+                {
+                    foreach (var thingDefStyle in styleCategoryDef.thingDefStyles)
+                    {
+                        if (thingDefStyle.ThingDef != thingDef)
+                            continue;
 
-                AddOption(thingDefStyle, thingDefStyle.StyleDef.LabelCap);
-                break;
+                        AddOption(thingDefStyle.StyleDef.Graphic, thingDefStyle.StyleDef, thingDefStyle.StyleDef.LabelCap);
+                        break;
+                    }
+                }
+            }
+
+            if (!thing.def.randomStyle.NullOrEmpty())
+            {
+                foreach (var randomStyle in thing.def.randomStyle)
+                {
+                    AddOption(randomStyle.StyleDef.Graphic, randomStyle.StyleDef, randomStyle.StyleDef.overrideLabel.CapitalizeFirst() ?? randomStyle.StyleDef.LabelCap.RawText ?? "Random Style: TODO Translat".Translate());
+                }
             }
         }
 
@@ -109,10 +119,9 @@ public static class AddOptionToThings
         if (options.Any())
             Find.WindowStack.Add(new FloatMenu(options));
 
-        void AddOption(ThingDefStyle thingDefStyle, string label)
+        void AddOption(Graphic graphic, ThingStyleDef style, string label)
         {
-            var style = thingDefStyle.StyleDef;
-            if (style.Graphic is Graphic_Random random)
+            if (graphic is Graphic_Random random)
             {
                 for (var index = 0; index < random.SubGraphicsCount; index++)
                 {
@@ -139,8 +148,8 @@ public static class AddOptionToThings
             {
                 options.Add(new FloatMenuOption(
                     label,
-                    () => ChangeStyleOfAllAffected(thingDef, style, -1, MP.CanUseDevMode),
-                    Widgets.GetIconFor(thing.def, stuff, thingDefStyle.StyleDef),
+                    () => ChangeStyleOfAllAffected(thingDef, style, null, MP.CanUseDevMode),
+                    Widgets.GetIconFor(thing.def, stuff, style),
                     color));
             }
         }
@@ -153,12 +162,11 @@ public static class AddOptionToThings
         {
             if ((GenConstruct.BuiltDefOf(thing.def) as ThingDef ?? thing.def) != defToChange)
                 continue;
-            if (CanModify(thing, canUseDevMode))
+            if (!CanModify(thing, canUseDevMode))
                 continue;
 
             thing.StyleDef = styleDef;
-            if (index is null or >= 0)
-                thing.overrideGraphicIndex = index;
+            thing.overrideGraphicIndex = index;
             thing.DirtyMapMesh(thing.Map);
         }
     }

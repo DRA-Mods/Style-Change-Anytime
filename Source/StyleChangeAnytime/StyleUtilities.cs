@@ -11,6 +11,9 @@ public static class StyleUtilities
     public static Texture2D GetInnerGraphicFor(Graphic graphic, int? index)
         => (Texture2D)graphic.ExtractInnerGraphicFor(null, index).MatAt(Rot4.East).mainTexture;
 
+    public static bool CanBeStyled(ThingDef def, List<StyleCategoryDef> styles)
+        => (def.CanBeStyled() && (!styles.NullOrEmpty() || !def.randomStyle.NullOrEmpty())) || IsSupportedGraphic(def.graphicData.Graphic);
+
     public static bool IsSupportedGraphic(Graphic graphic)
     {
         // Consider adding Alpha Craft or whatever had random graphics like that?

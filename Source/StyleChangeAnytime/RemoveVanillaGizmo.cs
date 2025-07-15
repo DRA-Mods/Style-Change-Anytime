@@ -15,18 +15,15 @@ internal static class RemoveVanillaGizmo
     {
         var instr = instructions.ToArray();
 
-        var ideoManagerGetter = AccessTools.DeclaredPropertyGetter(typeof(Find), nameof(Find.IdeoManager));
         var ideoManagerClassicModeField = AccessTools.DeclaredField(typeof(IdeoManager), nameof(IdeoManager.classicMode));
 
         var patched = 0;
 
-        for (var index = 0; index < instr.Length; index++)
+        foreach (var ci in instr)
         {
-            var ci = instr[index];
-
             yield return ci;
 
-            if (ci.Calls(ideoManagerGetter) && instr[index + 1].LoadsField(ideoManagerClassicModeField))
+            if (ci.LoadsField(ideoManagerClassicModeField))
             {
                 // Push false (0) onto stack
                 yield return new CodeInstruction(OpCodes.Ldc_I4_0);
