@@ -126,7 +126,7 @@ public static class AddOptionToThings
                 for (var index = 0; index < random.SubGraphicsCount; index++)
                 {
                     var localIndex = index;
-                    var icon = StyleUtilities.GetInnerGraphicFor(thing.Graphic, localIndex);
+                    var icon = StyleUtilities.GetInnerGraphicFor(graphic, localIndex);
 
                     if (localIndex == 0)
                     {
