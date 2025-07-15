@@ -109,9 +109,9 @@ public static class AddOptionToBills
 
         void AddOptions(Graphic graphic, ThingStyleDef style, string label)
         {
-            if (graphic is Graphic_Random random)
+            if (graphic is Graphic_Collection collection && StyleUtilities.IsSupportedGraphic(collection))
             {
-                for (var i = 0; i < random.SubGraphicsCount; i++)
+                for (var i = 0; i < collection.subGraphics.Length; i++)
                 {
                     var localIndex = i;
                     var icon = StyleUtilities.GetInnerGraphicFor(graphic, localIndex);

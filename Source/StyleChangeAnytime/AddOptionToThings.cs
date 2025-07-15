@@ -121,9 +121,9 @@ public static class AddOptionToThings
 
         void AddOptions(Graphic graphic, ThingStyleDef style, string label)
         {
-            if (graphic is Graphic_Random random)
+            if (graphic is Graphic_Collection collection && StyleUtilities.IsSupportedGraphic(collection))
             {
-                for (var index = 0; index < random.SubGraphicsCount; index++)
+                for (var index = 0; index < collection.subGraphics.Length; index++)
                 {
                     var localIndex = index;
                     var icon = StyleUtilities.GetInnerGraphicFor(graphic, localIndex);
