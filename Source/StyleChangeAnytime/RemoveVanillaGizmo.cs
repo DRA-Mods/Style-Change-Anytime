@@ -11,6 +11,7 @@ namespace StyleChangeAnytime;
 [HarmonyPatch(typeof(Blueprint_Build), nameof(Blueprint_Build.GetGizmos), MethodType.Enumerator)]
 internal static class RemoveVanillaGizmo
 {
+    // Only remove ideology check if ideology is active, no point otherwise.
     private static bool Prepare() => ModsConfig.IdeologyActive;
 
     private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, MethodBase baseMethod)

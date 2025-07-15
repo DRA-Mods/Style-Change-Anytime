@@ -41,10 +41,17 @@ public static class AddOptionToBills
 
                 // Call ModsConfig.IdeologyActive
                 yield return ci;
-                // Push false (0) onto stack
-                yield return new CodeInstruction(OpCodes.Ldc_I4_0);
-                // Bitwise & the two values together
-                yield return new CodeInstruction(OpCodes.And);
+
+                // Only remove ideology check if ideology is active, no point otherwise.
+                if (ModsConfig.IdeologyActive)
+                {
+                    // Push false (0) onto stack
+                    yield return new CodeInstruction(OpCodes.Ldc_I4_0);
+                    // Bitwise & the two values together
+                    yield return new CodeInstruction(OpCodes.And);
+                }
+
+                patched++;
             }
             else yield return ci;
         }
