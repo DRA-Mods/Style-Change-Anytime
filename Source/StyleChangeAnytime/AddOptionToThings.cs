@@ -87,7 +87,7 @@ public static class AddOptionToThings
 
         var options = new List<FloatMenuOption>();
 
-        AddOption(thing.Graphic, null, "Basic".Translate().CapitalizeFirst());
+        AddOptions(thing.Graphic, null, "Basic".Translate().CapitalizeFirst());
 
         if (thing.def.CanBeStyled())
         {
@@ -100,7 +100,7 @@ public static class AddOptionToThings
                         if (thingDefStyle.ThingDef != thingDef)
                             continue;
 
-                        AddOption(thingDefStyle.StyleDef.Graphic, thingDefStyle.StyleDef, thingDefStyle.StyleDef.LabelCap);
+                        AddOptions(thingDefStyle.StyleDef.Graphic, thingDefStyle.StyleDef, thingDefStyle.StyleDef.LabelCap);
                         break;
                     }
                 }
@@ -110,7 +110,7 @@ public static class AddOptionToThings
             {
                 foreach (var randomStyle in thing.def.randomStyle)
                 {
-                    AddOption(randomStyle.StyleDef.Graphic, randomStyle.StyleDef, randomStyle.StyleDef.overrideLabel.CapitalizeFirst() ?? randomStyle.StyleDef.LabelCap.RawText ?? "Random Style: TODO Translat".Translate());
+                    AddOptions(randomStyle.StyleDef.Graphic, randomStyle.StyleDef, StyleUtilities.GetRandomStyleString(randomStyle));
                 }
             }
         }
@@ -119,7 +119,7 @@ public static class AddOptionToThings
         if (options.Any())
             Find.WindowStack.Add(new FloatMenu(options));
 
-        void AddOption(Graphic graphic, ThingStyleDef style, string label)
+        void AddOptions(Graphic graphic, ThingStyleDef style, string label)
         {
             if (graphic is Graphic_Random random)
             {

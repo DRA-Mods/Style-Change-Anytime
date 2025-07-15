@@ -8,6 +8,9 @@ namespace StyleChangeAnytime;
 
 public static class StyleUtilities
 {
+    public static string GetRandomStyleString(ThingStyleChance style)
+        => style.StyleDef.overrideLabel.CapitalizeFirst() ?? style.StyleDef.LabelCap.RawText ?? "Random Style: TODO Translat".Translate();
+
     public static Texture2D GetInnerGraphicFor(Graphic graphic, int? index)
         => (Texture2D)graphic.ExtractInnerGraphicFor(null, index).MatAt(Rot4.East).mainTexture;
 
