@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using HarmonyLib;
@@ -14,12 +15,20 @@ public static class AddOptionToBills
 {
     private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, MethodBase baseMethod)
     {
-        foreach (var ci in instructions)
-        {
-            var methodToInsert = MethodUtilities.MethodOf(Insert);
-            var ideologyActiveGetter = AccessTools.DeclaredPropertyGetter(typeof(ModsConfig), nameof(ModsConfig.IdeologyActive));
+        var instr = instructions.ToList();
+        
+        var methodToInsert = MethodUtilities.MethodOf(InsertBillMenu);
+        var ideologyActiveGetter = AccessTools.DeclaredPropertyGetter(typeof(ModsConfig), nameof(ModsConfig.IdeologyActive));
+        var ideoManagerGetter = AccessTools.DeclaredPropertyGetter(typeof(Find), nameof(Find.IdeoManager));
 
-            if (ci.Calls(ideologyActiveGetter))
+        var patched = 0;
+
+        for (var i = 0; i < instr.Count; i++)
+        {
+            var ci = instr[i];
+
+            // There's 2 places where ModsConfig.IdeologyActive is called, we need to taget only one of them.
+            if (i + 2 < instr.Count && ci.Calls(ideologyActiveGetter) && instr[i + 2].Calls(ideoManagerGetter))
             {
                 // Insert this
                 yield return CodeInstruction.LoadArgument(0);
@@ -39,9 +48,15 @@ public static class AddOptionToBills
             }
             else yield return ci;
         }
+
+        const int expected = 1;
+        if (expected != patched)
+            Log.Error($"[{StyleChangeAnytimeMod.ModName}] - removing vanilla style failed, patched {patched} out of {expected} calls. Method: {baseMethod.GetMethodNameWithNamespace()}");
+        else if (StyleChangeAnytimeMod.settings.devModeLogs)
+            Log.Message($"[{StyleChangeAnytimeMod.ModName}] - successfully patched {patched} out of {expected} calls for {baseMethod.GetMethodNameWithNamespace()}");
     }
 
-    private static void Insert(Dialog_BillConfig instance, Listing_Standard listing, ref Rect rect)
+    private static void InsertBillMenu(Dialog_BillConfig instance, Listing_Standard listing, ref Rect rect)
     {
         listing.Gap(rect.height - listing.CurHeight - 90f);
         var producedThing = instance.bill.recipe.ProducedThingDef;
