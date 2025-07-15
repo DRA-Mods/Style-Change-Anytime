@@ -77,7 +77,7 @@ public static class AddOptionToBills
 
         if (producedThing.CanBeStyled())
         {
-            if (!relevantStyleCategories.NullOrEmpty())
+            if (ModsConfig.IdeologyActive && !relevantStyleCategories.NullOrEmpty())
             {
                 // UseGlobalStyle requires ideology, but so should this branch
                 options.Add(new FloatMenuOption($"{"UseGlobalStyle".Translate()} ({globalStyleLabel})", () => SetStyle(instance.bill, global?.styleDef, null, true), instance.bill.recipe.UIIconThing, instance.bill.recipe.UIIcon, global?.styleDef, orderInPriority: 1000));

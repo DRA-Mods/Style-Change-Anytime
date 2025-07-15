@@ -91,7 +91,7 @@ public static class AddOptionToThings
 
         if (thing.def.CanBeStyled())
         {
-            if (!styles.NullOrEmpty())
+            if (ModsConfig.IdeologyActive && !styles.NullOrEmpty())
             {
                 foreach (var styleCategoryDef in styles)
                 {
