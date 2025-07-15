@@ -16,7 +16,7 @@ public static class AddOptionToBills
     private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions, MethodBase baseMethod)
     {
         var instr = instructions.ToList();
-        
+
         var methodToInsert = MethodUtilities.MethodOf(InsertBillMenu);
         var ideologyActiveGetter = AccessTools.DeclaredPropertyGetter(typeof(ModsConfig), nameof(ModsConfig.IdeologyActive));
         var ideoManagerGetter = AccessTools.DeclaredPropertyGetter(typeof(Find), nameof(Find.IdeoManager));
@@ -65,8 +65,11 @@ public static class AddOptionToBills
 
     private static void InsertBillMenu(Dialog_BillConfig instance, Listing_Standard listing, ref Rect rect)
     {
-        listing.Gap(rect.height - listing.CurHeight - 90f);
         var producedThing = instance.bill.recipe.ProducedThingDef;
+        if (producedThing == null)
+            return;
+
+        listing.Gap(rect.height - listing.CurHeight - 90f);
 
         var relevantStyleCategories = StyleUtilities.FilterCategories(producedThing.RelevantStyleCategories);
 
