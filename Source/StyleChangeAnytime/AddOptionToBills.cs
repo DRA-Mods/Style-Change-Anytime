@@ -65,6 +65,9 @@ public static class AddOptionToBills
 
     private static void InsertBillMenu(Dialog_BillConfig instance, Listing_Standard listing, ref Rect rect)
     {
+        if (!StyleChangeAnytimeMod.settings.showOnBillConfig.ShouldShow())
+            return;
+
         var producedThing = instance.bill.recipe.ProducedThingDef;
         if (producedThing == null)
             return;

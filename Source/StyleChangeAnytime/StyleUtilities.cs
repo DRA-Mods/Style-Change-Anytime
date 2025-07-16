@@ -47,4 +47,12 @@ public static class StyleUtilities
             return result;
         return list;
     }
+
+    public static bool ShouldShow(this StyleChangeAnytimeSettings.ShowRestrictions restriction)
+        => restriction switch
+        {
+            StyleChangeAnytimeSettings.ShowRestrictions.Never => false,
+            StyleChangeAnytimeSettings.ShowRestrictions.ClassicMode when !Find.IdeoManager.classicMode => false,
+            _ => true,
+        };
 }

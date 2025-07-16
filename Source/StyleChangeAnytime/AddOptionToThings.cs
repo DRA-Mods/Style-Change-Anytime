@@ -54,15 +54,9 @@ public static class AddOptionToThings
             (_, ThingCategory.Plant) => StyleChangeAnytimeMod.settings.showOnPlants,
             _ => StyleChangeAnytimeSettings.ShowRestrictions.Never,
         };
-        switch (shouldShow)
-        {
-            case StyleChangeAnytimeSettings.ShowRestrictions.Never:
-            case StyleChangeAnytimeSettings.ShowRestrictions.ClassicMode when !Find.IdeoManager.classicMode:
-                return null;
-            case StyleChangeAnytimeSettings.ShowRestrictions.Always:
-            default:
-                break;
-        }
+
+        if (!shouldShow.ShouldShow())
+            return null;
 
         if (!StyleUtilities.CanBeStyled(thing.def, thing.def.RelevantStyleCategories))
             return null;
