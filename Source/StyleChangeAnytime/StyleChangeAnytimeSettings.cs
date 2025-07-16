@@ -104,7 +104,7 @@ public class StyleChangeAnytimeSettings : ModSettings
 
         if (listing.ButtonTextLabeledPct(
                 "StyleChangeAnytimeApplyToPlants".Translate().CapitalizeFirst(),
-                $"StyleChangeAnytimeApply{showOnItems}".Translate().CapitalizeFirst(),
+                $"StyleChangeAnytimeApply{showOnPlants}".Translate().CapitalizeFirst(),
                 0.7f,
                 tooltip: "StyleChangeAnytimeApplyToPlantsTooltip".Translate().CapitalizeFirst()))
         {
@@ -113,7 +113,7 @@ public class StyleChangeAnytimeSettings : ModSettings
 
         if (listing.ButtonTextLabeledPct(
                 "StyleChangeAnytimeApplyToBills".Translate().CapitalizeFirst(),
-                $"StyleChangeAnytimeApply{showOnItems}".Translate().CapitalizeFirst(),
+                $"StyleChangeAnytimeApply{showOnBillConfig}".Translate().CapitalizeFirst(),
                 0.7f,
                 tooltip: "StyleChangeAnytimeApplyToBillsTooltip".Translate().CapitalizeFirst()))
         {
