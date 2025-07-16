@@ -16,6 +16,7 @@ public class StyleChangeAnytimeSettings : ModSettings
     public ShowRestrictions showOnFrames = ShowRestrictions.Always;
     public ShowRestrictions showOnItems = ShowRestrictions.Always;
     public ShowRestrictions showOnPlants = ShowRestrictions.Never;
+    public ShowRestrictions showOnChunks = ShowRestrictions.Never;
     public ShowRestrictions showOnBillConfig = ShowRestrictions.Always;
 
     public bool devModeLogs = false;
@@ -40,6 +41,7 @@ public class StyleChangeAnytimeSettings : ModSettings
         Scribe_Values.Look(ref showOnFrames, nameof(showOnFrames), ShowRestrictions.Always);
         Scribe_Values.Look(ref showOnItems, nameof(showOnItems), ShowRestrictions.Always);
         Scribe_Values.Look(ref showOnPlants, nameof(showOnPlants), ShowRestrictions.Never);
+        Scribe_Values.Look(ref showOnChunks, nameof(showOnChunks), ShowRestrictions.Never);
         Scribe_Values.Look(ref showOnBillConfig, nameof(showOnBillConfig), ShowRestrictions.Always);
 
         Scribe_Values.Look(ref devModeLogs, nameof(devModeLogs), false);
@@ -109,6 +111,15 @@ public class StyleChangeAnytimeSettings : ModSettings
                 tooltip: "StyleChangeAnytimeApplyToPlantsTooltip".Translate().CapitalizeFirst()))
         {
             HandleShowRestrictionsMenu(val => showOnPlants = val);
+        }
+
+        if (listing.ButtonTextLabeledPct(
+                "StyleChangeAnytimeApplyToChunks".Translate().CapitalizeFirst(),
+                $"StyleChangeAnytimeApply{showOnChunks}".Translate().CapitalizeFirst(),
+                0.7f,
+                tooltip: "StyleChangeAnytimeApplyToChunksTooltip".Translate().CapitalizeFirst()))
+        {
+            HandleShowRestrictionsMenu(val => showOnChunks = val);
         }
 
         if (listing.ButtonTextLabeledPct(

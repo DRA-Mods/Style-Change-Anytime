@@ -27,6 +27,9 @@
     <StyleChangeAnytimeApplyToPlants>enabled for plants</StyleChangeAnytimeApplyToPlants>
     <StyleChangeAnytimeApplyToPlantsTooltip>if enabled, it'll be possible to change the style of already crafted plants (when a valid plants is selected)</StyleChangeAnytimeApplyToPlantsTooltip>
 
+    <StyleChangeAnytimeApplyToChunks>enabled for chunks</StyleChangeAnytimeApplyToChunks>
+    <StyleChangeAnytimeApplyToChunksTooltip>if enabled, it'll be possible to change the style of chunks (when a valid chunk is selected)</StyleChangeAnytimeApplyToChunksTooltip>
+
     <StyleChangeAnytimeApplyToBills>enabled for bills</StyleChangeAnytimeApplyToBills>
     <StyleChangeAnytimeApplyToBillsTooltip>if enabled, it'll be possible to change the style of bill (inside of bill config window)</StyleChangeAnytimeApplyToBillsTooltip>
 

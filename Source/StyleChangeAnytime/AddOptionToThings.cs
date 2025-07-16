@@ -45,6 +45,7 @@ public static class AddOptionToThings
         // A bit redundant on the checks, but whatever.
         var shouldShow = (thing, thing.def.category) switch
         {
+            _ when thing.def.thingCategories.Contains(ThingCategoryDefOf.Chunks) => StyleChangeAnytimeMod.settings.showOnChunks,
             (Frame, _) => StyleChangeAnytimeMod.settings.showOnFrames,
             (Blueprint, _) => StyleChangeAnytimeMod.settings.showOnBlueprints,
             (Building, _) => StyleChangeAnytimeMod.settings.showOnBuildings,
