@@ -39,7 +39,7 @@ public static class AddOptionToThings
             return null;
 
         // Only stuff owned by the player
-        if (!CanModify(thing, MP.CanUseDevMode))
+        if (!CanModify(thing, MpUtils.CanUseDevMode))
             return null;
 
         // A bit redundant on the checks, but whatever.
@@ -131,14 +131,14 @@ public static class AddOptionToThings
                     {
                         options.Add(new FloatMenuOption(
                             "StyleChangeAnytimeRandomDefault".Translate(label.Named("LABEL")),
-                            () => ChangeStyleOfAllAffected(thingDef, style, null, MP.CanUseDevMode),
+                            () => ChangeStyleOfAllAffected(thingDef, style, null, MpUtils.CanUseDevMode),
                             icon,
                             color));
                     }
 
                     options.Add(new FloatMenuOption(
                         "StyleChangeAnytimeRandomIndexed".Translate(label.Named("LABEL"), (localIndex + 1).Named("INDEX")),
-                        () => ChangeStyleOfAllAffected(thingDef, style, localIndex, MP.CanUseDevMode),
+                        () => ChangeStyleOfAllAffected(thingDef, style, localIndex, MpUtils.CanUseDevMode),
                         icon,
                         color));
                 }
@@ -147,7 +147,7 @@ public static class AddOptionToThings
             {
                 options.Add(new FloatMenuOption(
                     label,
-                    () => ChangeStyleOfAllAffected(thingDef, style, null, MP.CanUseDevMode),
+                    () => ChangeStyleOfAllAffected(thingDef, style, null, MpUtils.CanUseDevMode),
                     Widgets.GetIconFor(thing.def, stuff, style),
                     color));
             }
