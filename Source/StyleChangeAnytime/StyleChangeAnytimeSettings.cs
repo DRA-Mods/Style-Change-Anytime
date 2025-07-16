@@ -51,7 +51,7 @@ public class StyleChangeAnytimeSettings : ModSettings
     {
         var listing = new Listing_Standard();
         listing.Begin(inRect);
-        listing.ColumnWidth = 270f;
+        listing.ColumnWidth = 420f;
 
         listing.CheckboxLabeled(
             "StyleChangeAnytimeShowAllStyles".Translate().CapitalizeFirst(),
@@ -71,7 +71,7 @@ public class StyleChangeAnytimeSettings : ModSettings
         if (listing.ButtonTextLabeledPct(
                 "StyleChangeAnytimeApplyToBuildings".Translate().CapitalizeFirst(),
                 $"StyleChangeAnytimeApply{showOnBuildings}".Translate().CapitalizeFirst(),
-                0.7f,
+                0.65f,
                 tooltip: "StyleChangeAnytimeApplyToBuildingsTooltip".Translate().CapitalizeFirst()))
         {
             HandleShowRestrictionsMenu(val => showOnBuildings = val);
@@ -80,7 +80,7 @@ public class StyleChangeAnytimeSettings : ModSettings
         if (listing.ButtonTextLabeledPct(
                 "StyleChangeAnytimeApplyToBlueprints".Translate().CapitalizeFirst(),
                 $"StyleChangeAnytimeApply{showOnBlueprints}".Translate().CapitalizeFirst(),
-                0.7f,
+                0.65f,
                 tooltip: "StyleChangeAnytimeApplyToBlueprintsTooltip".Translate().CapitalizeFirst()))
         {
             HandleShowRestrictionsMenu(val => showOnBlueprints = val);
@@ -89,7 +89,7 @@ public class StyleChangeAnytimeSettings : ModSettings
         if (listing.ButtonTextLabeledPct(
                 "StyleChangeAnytimeApplyToFrames".Translate().CapitalizeFirst(),
                 $"StyleChangeAnytimeApply{showOnFrames}".Translate().CapitalizeFirst(),
-                0.7f,
+                0.65f,
                 tooltip: "StyleChangeAnytimeApplyToFramesTooltip".Translate().CapitalizeFirst()))
         {
             HandleShowRestrictionsMenu(val => showOnFrames = val);
@@ -98,7 +98,7 @@ public class StyleChangeAnytimeSettings : ModSettings
         if (listing.ButtonTextLabeledPct(
                 "StyleChangeAnytimeApplyToItems".Translate().CapitalizeFirst(),
                 $"StyleChangeAnytimeApply{showOnItems}".Translate().CapitalizeFirst(),
-                0.7f,
+                0.65f,
                 tooltip: "StyleChangeAnytimeApplyToItemsTooltip".Translate().CapitalizeFirst()))
         {
             HandleShowRestrictionsMenu(val => showOnItems = val);
@@ -107,7 +107,7 @@ public class StyleChangeAnytimeSettings : ModSettings
         if (listing.ButtonTextLabeledPct(
                 "StyleChangeAnytimeApplyToPlants".Translate().CapitalizeFirst(),
                 $"StyleChangeAnytimeApply{showOnPlants}".Translate().CapitalizeFirst(),
-                0.7f,
+                0.65f,
                 tooltip: "StyleChangeAnytimeApplyToPlantsTooltip".Translate().CapitalizeFirst()))
         {
             HandleShowRestrictionsMenu(val => showOnPlants = val);
@@ -116,7 +116,7 @@ public class StyleChangeAnytimeSettings : ModSettings
         if (listing.ButtonTextLabeledPct(
                 "StyleChangeAnytimeApplyToChunks".Translate().CapitalizeFirst(),
                 $"StyleChangeAnytimeApply{showOnChunks}".Translate().CapitalizeFirst(),
-                0.7f,
+                0.65f,
                 tooltip: "StyleChangeAnytimeApplyToChunksTooltip".Translate().CapitalizeFirst()))
         {
             HandleShowRestrictionsMenu(val => showOnChunks = val);
@@ -125,7 +125,7 @@ public class StyleChangeAnytimeSettings : ModSettings
         if (listing.ButtonTextLabeledPct(
                 "StyleChangeAnytimeApplyToBills".Translate().CapitalizeFirst(),
                 $"StyleChangeAnytimeApply{showOnBillConfig}".Translate().CapitalizeFirst(),
-                0.7f,
+                0.65f,
                 tooltip: "StyleChangeAnytimeApplyToBillsTooltip".Translate().CapitalizeFirst()))
         {
             HandleShowRestrictionsMenu(val => showOnBillConfig = val);
