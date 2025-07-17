@@ -11,7 +11,7 @@
     <StyleChangeAnytimeUsePrimaryIdeoOnlyTooltip>Determines if only the primary colony ideology is used, or should the minor ones also be included.</StyleChangeAnytimeUsePrimaryIdeoOnlyTooltip>
 
     <StyleChangeAnytimeIgnoreFactionCheck>ignore faction checks</StyleChangeAnytimeIgnoreFactionCheck>
-    <StyleChangeAnytimeIgnoreFactionCheckTooltip>If enabled, it'll be possible to change the style of anything not owned by the player (normally, only things that are owned or cannot have faction can be modified).</StyleChangeAnytimeIgnoreFactionCheckTooltip>
+    <StyleChangeAnytimeIgnoreFactionCheckTooltip>If enabled, it'll be possible to change the style of anything not owned by the player.\n\nNormally, only things that are owned/claimed by the player or things that cannot have faction (like items, chunks, plants) can be modified.</StyleChangeAnytimeIgnoreFactionCheckTooltip>
 
     <StyleChangeAnytimeApplyToBuildings>enabled for buildings</StyleChangeAnytimeApplyToBuildings>
     <StyleChangeAnytimeApplyToBuildingsTooltip>If enabled, it'll be possible to change the style of already crafted items (when a valid building is selected).</StyleChangeAnytimeApplyToBuildingsTooltip>
@@ -20,7 +20,7 @@
     <StyleChangeAnytimeApplyToBlueprintsTooltip>If enabled, it'll be possible to change the style of blueprints (when a valid blueprint is selected).</StyleChangeAnytimeApplyToBlueprintsTooltip>
 
     <StyleChangeAnytimeApplyToFrames>enabled for frames</StyleChangeAnytimeApplyToFrames>
-    <StyleChangeAnytimeApplyToFramesTooltip>If enabled, it'll be possible to change the style of frames (buildings under construction, only visible once fully constructed) (when a valid frame is selected).</StyleChangeAnytimeApplyToFramesTooltip>
+    <StyleChangeAnytimeApplyToFramesTooltip>If enabled, it'll be possible to change the style of frames (when a valid frame is selected).\n\nFrames are buildings under construction. The changes will be visible only once fully constructed.</StyleChangeAnytimeApplyToFramesTooltip>
 
     <StyleChangeAnytimeApplyToItems>enabled for items</StyleChangeAnytimeApplyToItems>
     <StyleChangeAnytimeApplyToItemsTooltip>If enabled, it'll be possible to change the style of already crafted items (when a valid item is selected).</StyleChangeAnytimeApplyToItemsTooltip>
@@ -29,7 +29,7 @@
     <StyleChangeAnytimeApplyToPlantsTooltip>If enabled, it'll be possible to change the style of already crafted plants (when a valid plants is selected).</StyleChangeAnytimeApplyToPlantsTooltip>
 
     <StyleChangeAnytimeApplyToChunks>enabled for chunks</StyleChangeAnytimeApplyToChunks>
-    <StyleChangeAnytimeApplyToChunksTooltip>if enabled, it'll be possible to change the style of chunks (when a valid chunk is selected).</StyleChangeAnytimeApplyToChunksTooltip>
+    <StyleChangeAnytimeApplyToChunksTooltip>If enabled, it'll be possible to change the style of chunks (when a valid chunk is selected).</StyleChangeAnytimeApplyToChunksTooltip>
 
     <StyleChangeAnytimeApplyToBills>enabled for bills</StyleChangeAnytimeApplyToBills>
     <StyleChangeAnytimeApplyToBillsTooltip>If enabled, it'll be possible to change the style of bill (inside of bill config window).</StyleChangeAnytimeApplyToBillsTooltip>
