@@ -43,21 +43,7 @@ public static class AddOptionToThings
         if (!CanModify(thing, MpUtils.CanUseDevMode))
             return null;
 
-        // A bit redundant on the checks, but whatever.
-        var shouldShow = (thing, thing.def.category) switch
-        {
-            _ when thing.def.thingCategories.NotNullAndContains(ThingCategoryDefOf.Chunks) => StyleChangeAnytimeMod.settings.showOnChunks,
-            (Frame, _) => StyleChangeAnytimeMod.settings.showOnFrames,
-            (Blueprint, _) => StyleChangeAnytimeMod.settings.showOnBlueprints,
-            (Building, _) => StyleChangeAnytimeMod.settings.showOnBuildings,
-            (Plant, _) => StyleChangeAnytimeMod.settings.showOnPlants,
-            (_, ThingCategory.Item) => StyleChangeAnytimeMod.settings.showOnItems,
-            (_, ThingCategory.Building) => StyleChangeAnytimeMod.settings.showOnBuildings,
-            (_, ThingCategory.Plant) => StyleChangeAnytimeMod.settings.showOnPlants,
-            _ => StyleChangeAnytimeSettings.ShowRestrictions.Never,
-        };
-
-        if (!shouldShow.ShouldShow())
+        if (!StyleUtilities.ShouldShow(thing))
             return null;
 
         if (!StyleUtilities.CanBeStyled(thing.def, thing.def.RelevantStyleCategories))

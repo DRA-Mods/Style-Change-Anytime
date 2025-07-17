@@ -48,6 +48,23 @@ public static class StyleUtilities
         return list;
     }
 
+    // A bit redundant on the checks, but whatever.
+    public static StyleChangeAnytimeSettings.ShowRestrictions GetCategoryFor(ThingWithComps thing)
+        => (thing, thing.def.category) switch
+        {
+            _ when thing.def.thingCategories.NotNullAndContains(ThingCategoryDefOf.Chunks) => StyleChangeAnytimeMod.settings.showOnChunks,
+            (Frame, _) => StyleChangeAnytimeMod.settings.showOnFrames,
+            (Blueprint, _) => StyleChangeAnytimeMod.settings.showOnBlueprints,
+            (Building, _) => StyleChangeAnytimeMod.settings.showOnBuildings,
+            (Plant, _) => StyleChangeAnytimeMod.settings.showOnPlants,
+            (_, ThingCategory.Item) => StyleChangeAnytimeMod.settings.showOnItems,
+            (_, ThingCategory.Building) => StyleChangeAnytimeMod.settings.showOnBuildings,
+            (_, ThingCategory.Plant) => StyleChangeAnytimeMod.settings.showOnPlants,
+            _ => StyleChangeAnytimeSettings.ShowRestrictions.Never,
+        };
+
+    public static bool ShouldShow(ThingWithComps thing) => GetCategoryFor(thing).ShouldShow();
+
     public static bool ShouldShow(this StyleChangeAnytimeSettings.ShowRestrictions restriction)
         => restriction switch
         {
