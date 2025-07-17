@@ -12,7 +12,7 @@ namespace StyleChangeAnytime;
 [HarmonyPatch(typeof(ThingWithComps), nameof(ThingWithComps.GetGizmos))]
 public static class AddOptionToThings
 {
-    private static readonly CachedTexture ChangeStyleTex;
+    public static readonly CachedTexture ChangeStyleTex;
 
     static AddOptionToThings()
     {
@@ -57,7 +57,7 @@ public static class AddOptionToThings
             defaultDesc = "StyleChangeAnytimeChangeAppearanceDesc".Translate(),
             icon = ChangeStyleTex.Texture,
             Order = 15f,
-            action = () => OnGizmo(thing, relevantStyles),
+            action = () => DisplayMenuFor(thing, relevantStyles, false),
         };
         if (!StyleUtilities.CanBeStyled(thing.def, relevantStyles))
             gizmo.Disable("StyleChangeAnytimeChangeAppearanceDisabledNoCategories".Translate());
@@ -65,7 +65,7 @@ public static class AddOptionToThings
         return gizmo;
     }
 
-    private static void OnGizmo(ThingWithComps thing, List<StyleCategoryDef> styles)
+    public static void DisplayMenuFor(ThingWithComps thing, List<StyleCategoryDef> styles, bool onlySpecifiedThing)
     {
         var thingDef = GenConstruct.BuiltDefOf(thing.def) as ThingDef ?? thing.def;
         var stuff = thing.Stuff;
@@ -118,14 +118,18 @@ public static class AddOptionToThings
                     {
                         options.Add(new FloatMenuOption(
                             "StyleChangeAnytimeRandomDefault".Translate(label.Named("LABEL")),
-                            () => ChangeStyleOfAllAffected(thingDef, style, null, MpUtils.CanUseDevMode),
+                            onlySpecifiedThing
+                                ? () => ChangeStyleOf(thing, thingDef, style, null, MpUtils.CanUseDevMode)
+                                : () => ChangeStyleOfAllAffected(thingDef, style, null, MpUtils.CanUseDevMode),
                             icon,
                             color));
                     }
 
                     options.Add(new FloatMenuOption(
                         "StyleChangeAnytimeRandomIndexed".Translate(label.Named("LABEL"), (localIndex + 1).Named("INDEX")),
-                        () => ChangeStyleOfAllAffected(thingDef, style, localIndex, MpUtils.CanUseDevMode),
+                        onlySpecifiedThing
+                            ? () => ChangeStyleOf(thing, thingDef, style, localIndex, MpUtils.CanUseDevMode)
+                            : () => ChangeStyleOfAllAffected(thingDef, style, localIndex, MpUtils.CanUseDevMode),
                         icon,
                         color));
                 }
@@ -134,7 +138,9 @@ public static class AddOptionToThings
             {
                 options.Add(new FloatMenuOption(
                     label,
-                    () => ChangeStyleOfAllAffected(thingDef, style, null, MpUtils.CanUseDevMode),
+                    onlySpecifiedThing
+                        ? () => ChangeStyleOf(thing, thingDef, style, null, MpUtils.CanUseDevMode)
+                        : () => ChangeStyleOfAllAffected(thingDef, style, null, MpUtils.CanUseDevMode),
                     Widgets.GetIconFor(thing.def, stuff, style),
                     color));
             }
@@ -147,16 +153,24 @@ public static class AddOptionToThings
         foreach (var thing in Find.Selector.SelectedObjects.OfType<Thing>())
         {
             if ((GenConstruct.BuiltDefOf(thing.def) as ThingDef ?? thing.def) != defToChange)
-                continue;
-            if (!CanModify(thing, canUseDevMode))
-                continue;
+                return;
 
-            thing.StyleDef = styleDef;
-            thing.overrideGraphicIndex = index;
-
-            if (thing.Spawned)
-                thing.DirtyMapMesh(thing.Map);
+            ChangeStyleOf(thing, defToChange, styleDef, index, canUseDevMode);
         }
+    }
+
+    // TODO: May need to handle the thing differently for items carried by pawns. Check once MP updates.
+    [SyncMethod]
+    private static void ChangeStyleOf(Thing thing, ThingDef defToChange, ThingStyleDef styleDef, int? index, bool canUseDevMode)
+    {
+        if (!CanModify(thing, canUseDevMode))
+            return;
+
+        thing.StyleDef = styleDef;
+        thing.overrideGraphicIndex = index;
+
+        if (thing.Spawned)
+            thing.DirtyMapMesh(thing.Map);
     }
 
     private static bool CanModify(Thing thing, bool canUseDevMode)

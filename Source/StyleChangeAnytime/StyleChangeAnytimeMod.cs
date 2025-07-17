@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using Multiplayer.API;
+using StyleChangeAnytime.Compat;
 using UnityEngine;
 using Verse;
 
@@ -19,7 +20,9 @@ public class StyleChangeAnytimeMod : Mod
 
         LongEventHandler.ExecuteWhenFinished(() =>
         {
-            Harmony.PatchAll();
+            Harmony.PatchAllUncategorized();
+            if (settings.rpgStyleInventoryCompatibility)
+                RpgStyleInventory.Patch();
             if (MP.enabled)
                 MP.RegisterAll();
         });

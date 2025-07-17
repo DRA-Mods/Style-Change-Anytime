@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using StyleChangeAnytime.Compat;
 using UnityEngine;
 using Verse;
 
@@ -18,6 +19,8 @@ public class StyleChangeAnytimeSettings : ModSettings
     public ShowRestrictions showOnPlants = ShowRestrictions.Never;
     public ShowRestrictions showOnChunks = ShowRestrictions.Never;
     public ShowRestrictions showOnBillConfig = ShowRestrictions.Always;
+
+    public bool rpgStyleInventoryCompatibility = true;
 
     public bool devModeLogs = false;
 
@@ -43,6 +46,8 @@ public class StyleChangeAnytimeSettings : ModSettings
         Scribe_Values.Look(ref showOnPlants, nameof(showOnPlants), ShowRestrictions.Never);
         Scribe_Values.Look(ref showOnChunks, nameof(showOnChunks), ShowRestrictions.Never);
         Scribe_Values.Look(ref showOnBillConfig, nameof(showOnBillConfig), ShowRestrictions.Always);
+
+        Scribe_Values.Look(ref rpgStyleInventoryCompatibility, nameof(rpgStyleInventoryCompatibility), true);
 
         Scribe_Values.Look(ref devModeLogs, nameof(devModeLogs), false);
     }
@@ -129,6 +134,23 @@ public class StyleChangeAnytimeSettings : ModSettings
                 tooltip: "StyleChangeAnytimeApplyToBillsTooltip".Translate()))
         {
             HandleShowRestrictionsMenu(val => showOnBillConfig = val);
+        }
+
+        listing.GapLine();
+
+        listing.Label("StyleChangeAnytimeCompatibilityPatches".Translate().CapitalizeFirst());
+
+        var prev = rpgStyleInventoryCompatibility;
+        listing.CheckboxLabeled(
+            "StyleChangeAnytimeCompatibilityRpgStyleInventory".Translate(),
+            ref rpgStyleInventoryCompatibility, 
+            "StyleChangeAnytimeCompatibilityRpgStyleInventoryTooltip".Translate());
+        if (prev != rpgStyleInventoryCompatibility)
+        {
+            if (rpgStyleInventoryCompatibility)
+                RpgStyleInventory.Patch();
+            else
+                RpgStyleInventory.Unpatch();
         }
 
         if (devModeLogs || Prefs.DevMode)

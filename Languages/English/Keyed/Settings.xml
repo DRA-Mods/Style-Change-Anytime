@@ -41,4 +41,10 @@
     <StyleChangeAnytimeApplyClassicMode>classic mode</StyleChangeAnytimeApplyClassicMode>
     <StyleChangeAnytimeApplyAlways>always</StyleChangeAnytimeApplyAlways>
 
+    <!-- Section name -->
+    <StyleChangeAnytimeCompatibilityPatches>compatibility patches</StyleChangeAnytimeCompatibilityPatches>
+
+    <StyleChangeAnytimeCompatibilityRpgStyleInventory>RPG Style Inventory Revamped</StyleChangeAnytimeCompatibilityRpgStyleInventory>
+    <StyleChangeAnytimeCompatibilityRpgStyleInventoryTooltip>If enabled, it'll be possible to change the style of items equipped by your colonists using RPG style inventory.\n\nThis only on equipped items, not the ones carried by them. To change the style you need to right-click on the item in their inventory.</StyleChangeAnytimeCompatibilityRpgStyleInventoryTooltip>
+
 </LanguageData>
