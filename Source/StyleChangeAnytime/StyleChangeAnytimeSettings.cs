@@ -56,15 +56,15 @@ public class StyleChangeAnytimeSettings : ModSettings
         listing.CheckboxLabeled(
             "StyleChangeAnytimeShowAllStyles".Translate().CapitalizeFirst(),
             ref showAllStyles,
-            "StyleChangeAnytimeShowAllStylesTooltip".Translate().CapitalizeFirst());
+            "StyleChangeAnytimeShowAllStylesTooltip".Translate());
         listing.CheckboxLabeled(
             "StyleChangeAnytimeUsePrimaryIdeoOnly".Translate().CapitalizeFirst(),
             ref usePrimaryIdeoOnly,
-            "StyleChangeAnytimeUsePrimaryIdeoOnlyTooltip".Translate().CapitalizeFirst());
+            "StyleChangeAnytimeUsePrimaryIdeoOnlyTooltip".Translate());
         listing.CheckboxLabeled(
             "StyleChangeAnytimeIgnoreFactionCheck".Translate().CapitalizeFirst(),
             ref ignoreFactionCheck,
-            "StyleChangeAnytimeIgnoreFactionCheckTooltip".Translate().CapitalizeFirst());
+            "StyleChangeAnytimeIgnoreFactionCheckTooltip".Translate());
 
         listing.GapLine();
 
@@ -72,7 +72,7 @@ public class StyleChangeAnytimeSettings : ModSettings
                 "StyleChangeAnytimeApplyToBuildings".Translate().CapitalizeFirst(),
                 $"StyleChangeAnytimeApply{showOnBuildings}".Translate().CapitalizeFirst(),
                 0.65f,
-                tooltip: "StyleChangeAnytimeApplyToBuildingsTooltip".Translate().CapitalizeFirst()))
+                tooltip: "StyleChangeAnytimeApplyToBuildingsTooltip".Translate()))
         {
             HandleShowRestrictionsMenu(val => showOnBuildings = val);
         }
@@ -81,7 +81,7 @@ public class StyleChangeAnytimeSettings : ModSettings
                 "StyleChangeAnytimeApplyToBlueprints".Translate().CapitalizeFirst(),
                 $"StyleChangeAnytimeApply{showOnBlueprints}".Translate().CapitalizeFirst(),
                 0.65f,
-                tooltip: "StyleChangeAnytimeApplyToBlueprintsTooltip".Translate().CapitalizeFirst()))
+                tooltip: "StyleChangeAnytimeApplyToBlueprintsTooltip".Translate()))
         {
             HandleShowRestrictionsMenu(val => showOnBlueprints = val);
         }
@@ -90,7 +90,7 @@ public class StyleChangeAnytimeSettings : ModSettings
                 "StyleChangeAnytimeApplyToFrames".Translate().CapitalizeFirst(),
                 $"StyleChangeAnytimeApply{showOnFrames}".Translate().CapitalizeFirst(),
                 0.65f,
-                tooltip: "StyleChangeAnytimeApplyToFramesTooltip".Translate().CapitalizeFirst()))
+                tooltip: "StyleChangeAnytimeApplyToFramesTooltip".Translate()))
         {
             HandleShowRestrictionsMenu(val => showOnFrames = val);
         }
@@ -99,7 +99,7 @@ public class StyleChangeAnytimeSettings : ModSettings
                 "StyleChangeAnytimeApplyToItems".Translate().CapitalizeFirst(),
                 $"StyleChangeAnytimeApply{showOnItems}".Translate().CapitalizeFirst(),
                 0.65f,
-                tooltip: "StyleChangeAnytimeApplyToItemsTooltip".Translate().CapitalizeFirst()))
+                tooltip: "StyleChangeAnytimeApplyToItemsTooltip".Translate()))
         {
             HandleShowRestrictionsMenu(val => showOnItems = val);
         }
@@ -108,7 +108,7 @@ public class StyleChangeAnytimeSettings : ModSettings
                 "StyleChangeAnytimeApplyToPlants".Translate().CapitalizeFirst(),
                 $"StyleChangeAnytimeApply{showOnPlants}".Translate().CapitalizeFirst(),
                 0.65f,
-                tooltip: "StyleChangeAnytimeApplyToPlantsTooltip".Translate().CapitalizeFirst()))
+                tooltip: "StyleChangeAnytimeApplyToPlantsTooltip".Translate()))
         {
             HandleShowRestrictionsMenu(val => showOnPlants = val);
         }
@@ -117,7 +117,7 @@ public class StyleChangeAnytimeSettings : ModSettings
                 "StyleChangeAnytimeApplyToChunks".Translate().CapitalizeFirst(),
                 $"StyleChangeAnytimeApply{showOnChunks}".Translate().CapitalizeFirst(),
                 0.65f,
-                tooltip: "StyleChangeAnytimeApplyToChunksTooltip".Translate().CapitalizeFirst()))
+                tooltip: "StyleChangeAnytimeApplyToChunksTooltip".Translate()))
         {
             HandleShowRestrictionsMenu(val => showOnChunks = val);
         }
@@ -126,7 +126,7 @@ public class StyleChangeAnytimeSettings : ModSettings
                 "StyleChangeAnytimeApplyToBills".Translate().CapitalizeFirst(),
                 $"StyleChangeAnytimeApply{showOnBillConfig}".Translate().CapitalizeFirst(),
                 0.65f,
-                tooltip: "StyleChangeAnytimeApplyToBillsTooltip".Translate().CapitalizeFirst()))
+                tooltip: "StyleChangeAnytimeApplyToBillsTooltip".Translate()))
         {
             HandleShowRestrictionsMenu(val => showOnBillConfig = val);
         }
@@ -138,7 +138,7 @@ public class StyleChangeAnytimeSettings : ModSettings
             listing.CheckboxLabeled(
                 "StyleChangeAnytimeDevModeLogs".Translate().CapitalizeFirst(),
                 ref devModeLogs,
-                "StyleChangeAnytimeDevModeLogsTooltip".Translate().CapitalizeFirst());
+                "StyleChangeAnytimeDevModeLogsTooltip".Translate());
         }
 
         listing.End();
