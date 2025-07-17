@@ -166,7 +166,9 @@ public static class AddOptionToThings
 
             thing.StyleDef = styleDef;
             thing.overrideGraphicIndex = index;
-            thing.DirtyMapMesh(thing.Map);
+
+            if (thing.Spawned)
+                thing.DirtyMapMesh(thing.Map);
         }
     }
 
