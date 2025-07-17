@@ -2,7 +2,7 @@
 using JetBrains.Annotations;
 using Multiplayer.API;
 
-namespace StyleChangeAnytime;
+namespace StyleChangeAnytime.Compat;
 
 public class MpUtils
 {

@@ -3,6 +3,7 @@ using System.Linq;
 using HarmonyLib;
 using Multiplayer.API;
 using RimWorld;
+using StyleChangeAnytime.Compat;
 using UnityEngine;
 using Verse;
 
