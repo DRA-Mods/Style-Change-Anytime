@@ -56,7 +56,7 @@ public static class StyleUtilities
     }
 
     // A bit redundant on the checks, but whatever.
-    public static StyleChangeAnytimeSettings.ShowRestrictions GetCategoryFor(ThingWithComps thing)
+    public static StyleChangeAnytimeSettings.ShowRestrictions GetCategoryFor(Thing thing)
         => (thing, thing.def.category) switch
         {
             _ when thing.def.thingCategories.NotNullAndContains(ThingCategoryDefOf.Chunks) => StyleChangeAnytimeMod.settings.showOnChunks,
@@ -70,7 +70,7 @@ public static class StyleUtilities
             _ => StyleChangeAnytimeSettings.ShowRestrictions.Never,
         };
 
-    public static bool ShouldShow(ThingWithComps thing) => GetCategoryFor(thing).ShouldShow();
+    public static bool ShouldShow(Thing thing) => GetCategoryFor(thing).ShouldShow();
 
     public static bool ShouldShow(this StyleChangeAnytimeSettings.ShowRestrictions restriction)
         => restriction switch
