@@ -36,6 +36,8 @@ public static class AddOptionToThings
 
     private static Gizmo GetChangeStyleGizmo(ThingWithComps thing)
     {
+        thing = thing.GetInnerIfMinified() as ThingWithComps;
+
         if (thing?.def == null)
             return null;
 
@@ -153,7 +155,8 @@ public static class AddOptionToThings
     {
         foreach (var thing in Find.Selector.SelectedObjects.OfType<Thing>())
         {
-            if ((GenConstruct.BuiltDefOf(thing.def) as ThingDef ?? thing.def) != defToChange)
+            var innerThing = thing.GetInnerIfMinified();
+            if ((GenConstruct.BuiltDefOf(innerThing.def) as ThingDef ?? innerThing.def) != defToChange)
                 return;
 
             ChangeStyleOf(thing, defToChange, styleDef, index, canUseDevMode);
@@ -164,14 +167,33 @@ public static class AddOptionToThings
     [SyncMethod]
     private static void ChangeStyleOf(Thing thing, ThingDef defToChange, ThingStyleDef styleDef, int? index, bool canUseDevMode)
     {
+        var minified = thing as MinifiedThing;
+        if (minified != null)
+            thing = minified.InnerThing;
+
         if (!CanModify(thing, canUseDevMode))
             return;
 
         thing.StyleDef = styleDef;
         thing.overrideGraphicIndex = index;
 
-        if (thing.Spawned)
-            thing.DirtyMapMesh(thing.Map);
+        if (minified != null)
+            minified.cachedGraphic = null;
+
+        if (thing.Spawned || minified is { Spawned: true })
+        {
+            thing.DirtyMapMesh(thing.MapHeld);
+            // if (minified != null)
+            //     thing.Map.mapDrawer.SectionAt(thing.Position).RegenerateAllLayers();
+            // if (minified != null)
+            // {
+            //     var section = thing.Map.mapDrawer.SectionAt(thing.Position);
+            //     section.GetLayer(typeof(SectionLayer_ThingsGeneral)).Dirty = true;
+            //     section.anyLayerDirty = true;
+            // }
+            // if (minified != null)
+            //     thing.Map.mapDrawer.MapMeshDirty(thing.Position, MapMeshFlagDefOf.Buildings);
+        }
     }
 
     private static bool CanModify(Thing thing, bool canUseDevMode)
