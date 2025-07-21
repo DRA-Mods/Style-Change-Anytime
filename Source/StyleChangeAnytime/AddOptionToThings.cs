@@ -181,19 +181,7 @@ public static class AddOptionToThings
             minified.cachedGraphic = null;
 
         if (thing.Spawned || minified is { Spawned: true })
-        {
             thing.DirtyMapMesh(thing.MapHeld);
-            // if (minified != null)
-            //     thing.Map.mapDrawer.SectionAt(thing.Position).RegenerateAllLayers();
-            // if (minified != null)
-            // {
-            //     var section = thing.Map.mapDrawer.SectionAt(thing.Position);
-            //     section.GetLayer(typeof(SectionLayer_ThingsGeneral)).Dirty = true;
-            //     section.anyLayerDirty = true;
-            // }
-            // if (minified != null)
-            //     thing.Map.mapDrawer.MapMeshDirty(thing.Position, MapMeshFlagDefOf.Buildings);
-        }
     }
 
     private static bool CanModify(Thing thing, bool canUseDevMode)
