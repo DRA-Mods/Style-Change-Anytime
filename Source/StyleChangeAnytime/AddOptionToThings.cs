@@ -142,7 +142,7 @@ public static class AddOptionToThings
                     onlySpecifiedThing
                         ? () => ChangeStyleOf(thing, thingDef, style, null, MpUtils.CanUseDevMode)
                         : () => ChangeStyleOfAllAffected(thingDef, style, null, MpUtils.CanUseDevMode),
-                    Widgets.GetIconFor(thing.def, stuff, style),
+                    Widgets.GetIconFor(thingDef, stuff, style),
                     color));
             }
         }
