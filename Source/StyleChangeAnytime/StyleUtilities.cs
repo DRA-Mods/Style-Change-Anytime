@@ -16,9 +16,6 @@ public static class StyleUtilities
 
     public static bool CanBeStyled(ThingDef def, List<StyleCategoryDef> styles)
     {
-        def = GenConstruct.BuiltDefOf(def) as ThingDef;
-        if (def == null)
-            return false;
         if (def.graphicData?.Graphic != null && IsSupportedGraphic(def.graphicData.Graphic))
             return true;
         return def.CanBeStyled() && (!styles.NullOrEmpty() || !def.randomStyle.NullOrEmpty());

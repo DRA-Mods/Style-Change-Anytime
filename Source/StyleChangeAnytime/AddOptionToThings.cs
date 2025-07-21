@@ -46,10 +46,11 @@ public static class AddOptionToThings
         if (!StyleUtilities.ShouldShow(thing))
             return null;
 
-        if (!StyleUtilities.CanBeStyled(thing.def, thing.def.RelevantStyleCategories))
+        var def = GenConstruct.BuiltDefOf(thing.def) as ThingDef ?? thing.def;
+        if (!StyleUtilities.CanBeStyled(def, def.RelevantStyleCategories))
             return null;
 
-        var relevantStyles = StyleUtilities.FilterCategories(thing.def.RelevantStyleCategories);
+        var relevantStyles = StyleUtilities.FilterCategories(def.RelevantStyleCategories);
 
         var gizmo = new Command_Action
         {
@@ -59,7 +60,7 @@ public static class AddOptionToThings
             Order = 15f,
             action = () => DisplayMenuFor(thing, relevantStyles, false),
         };
-        if (!StyleUtilities.CanBeStyled(thing.def, relevantStyles))
+        if (!StyleUtilities.CanBeStyled(def, relevantStyles))
             gizmo.Disable("StyleChangeAnytimeChangeAppearanceDisabledNoCategories".Translate());
 
         return gizmo;
